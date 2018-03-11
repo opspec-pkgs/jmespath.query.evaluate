@@ -1,0 +1,22 @@
+name: github.com/opspec-pkgs/jmespath.query.eval-object
+description: evaluates a [jmespath](http://jmespath.org/) query which both operates on, & returns, an object
+inputs:
+  object:
+    object:
+      description: object jmespath expression will be evaluated against
+  query:
+    string:
+      description: the jmespath query to evaluate
+outputs:
+  object:
+    object:
+      description: result of evaluating the jmespath expression
+version: 1.0.0
+run:
+  container:
+    image: { ref: 'opspecpkgs/jmespath.query.eval-object:1.0.0' }
+    cmd: [node, /cmd.js]
+    files:
+      /cmd.js:
+      /object.json: $(object)
+      /query: $(query)
